@@ -1,4 +1,4 @@
-= headshop
+= headshop - Work In Progress
 
 Description goes here.
 
@@ -16,4 +16,3 @@ Description goes here.
 
 Copyright (c) 2011 Chuck Collins. See LICENSE.txt for
 further details.
-
