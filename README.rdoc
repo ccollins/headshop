@@ -1,6 +1,6 @@
 = headshop - Work In Progress
 
-Description goes here.
+Meta tag management to DRY up your views and SEO the crap out of your site.
 
 == Contributing to headshop
  
