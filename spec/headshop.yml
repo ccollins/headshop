@@ -1,0 +1,10 @@
+default_meta:
+  description: 'default_description'
+  keywords: 'default_keywords'
+  title: 'default_title'
+  
+tester:
+  default_meta:
+    description: 'tester_description'
+    keywords: 'tester_keywords'
+    title: 'tester_title'
