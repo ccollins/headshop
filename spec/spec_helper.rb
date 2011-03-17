@@ -3,7 +3,6 @@ require 'bundler'
 Bundler.setup
 
 require 'rspec'
-require "active_record/railtie"
 require "action_controller/railtie"
 
 RSpec.configure do |config|
