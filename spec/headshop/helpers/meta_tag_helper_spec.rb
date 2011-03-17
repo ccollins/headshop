@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Headshop::Helpers::MetaTagHelper do
-  before(:each) do
+  before(:all) do
     Headshop.setup do |config|
       config.config_file = File.join(File.dirname(__FILE__), '..', '..', 'headshop.yml')
     end
@@ -23,8 +23,18 @@ describe Headshop::Helpers::MetaTagHelper do
       @class.should_receive(:write_meta_data).with('yippe')
       @class.meta_tag
     end
-    
-    it "should return the corresponding meta data" do
+  end
+  
+  context "#get_meta_data_for" do
+    it "should return default data without a mapping" do
+      @class.get_meta_data_for('controller', 'action').should == {"title"=>"default_title", "description"=>"default_description", "keywords"=>"default_keywords"}
+    end
+  end
+  
+  context "#write_meta_data" do
+    it "should write meta data for anything" do
+      @class.write_meta_data({"title"=>"default_title", "description"=>"default_description", "keywords"=>"default_keywords", :yousocrazy => :tester}).should ==
+        "<meta name='title' content='default_title' />\n<meta name='description' content='default_description' />\n<meta name='yousocrazy' content='tester' />\n<meta name='keywords' content='default_keywords' />"
     end
   end
 end
