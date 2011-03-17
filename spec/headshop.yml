@@ -3,6 +3,12 @@ default_meta:
   keywords: 'default_keywords'
   title: 'default_title'
   
+controller:
+  action:
+    description: 'action_description'
+    keywords: 'action_keywords'
+    title: 'action_title'
+  
 tester:
   default_meta:
     description: 'tester_description'

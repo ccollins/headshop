@@ -17,4 +17,8 @@ module Headshop
   def self.setup
      yield self
   end
+  
+  def self.has_meta_data_for?(controller, action)
+    self.meta_data.has_key?(controller) && self.meta_data[controller].has_key?(action)
+  end
 end
