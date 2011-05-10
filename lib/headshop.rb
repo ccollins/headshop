@@ -1,5 +1,4 @@
-require 'headshop/helpers'
-require 'headshop/railtie'
+require 'action_view'
 require 'yaml'
 
 module Headshop
@@ -22,3 +21,7 @@ module Headshop
     self.meta_data.has_key?(controller) && self.meta_data[controller].has_key?(action)
   end
 end
+
+require 'headshop/meta_tag_helper'
+
+ActionView::Base.send :include, Headshop::MetaTagHelper
