@@ -13,10 +13,8 @@ describe Headshop::MetaTagHelper do
   
   context "#meta_tag" do
     before(:each) do
-      controller = Class.new
-      Class.stub!(:controller).and_return(controller)
-      controller.stub!(:name).and_return('controller')
-      controller.stub!(:action_name).and_return('action')
+      Class.stub!(:controller_name).and_return('controller')
+      Class.stub!(:action_name).and_return('action')
     end
     
     it "should call for and write the meta data" do

@@ -1,6 +1,6 @@
 module Headshop::MetaTagHelper
   def meta_tag
-    write_meta_data(get_meta_data_for(controller.name, controller.action_name))
+    write_meta_data(get_meta_data_for(controller_name, action_name))
   end
   
   def get_meta_data_for(controller, action)
