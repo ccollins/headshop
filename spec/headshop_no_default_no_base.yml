@@ -1,13 +1,3 @@
-base_meta:
-  description: base | 
-  keywords: base, 
-  title: base |
-  
-default_meta:
-  description: 'default_description'
-  keywords: 'default_keywords'
-  title: 'default_title'
-  
 controller:
   action:
     description: 'action_description'

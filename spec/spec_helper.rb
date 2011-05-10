@@ -10,7 +10,3 @@ RSpec.configure do |config|
 end
 
 require File.join(File.dirname(__FILE__), "..", "lib", "headshop")
-
-#TODO
-#apply base tag to all tags
-#write out <title></title>
