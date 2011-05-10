@@ -8,6 +8,7 @@ module Headshop::MetaTagHelper
   end
   
   def write_meta_data meta_data
-    meta_data.reduce('') { |memo, obj| memo += "<meta name='#{obj[0]}' content='#{obj[1]}' />\n" }
+    result = meta_data.reduce('') { |memo, obj| memo += "<meta name='#{obj[0]}' content='#{obj[1]}' />\n" }
+    result.respond_to?(:html_safe) ? result.html_safe : result
   end
 end
