@@ -51,6 +51,7 @@ This will output (given the default_meta above):
 Meta tags aren't limited to title, description and keywords.  Headshop will apply any meta tag found in the yml file to your view.
 
 Display the meta tag in your view with the meta_tag helper:
+
     = meta_tag
 
 
