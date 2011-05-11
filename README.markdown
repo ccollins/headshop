@@ -27,7 +27,7 @@ Headshop will search the yml file with the controller name/action name to find t
         description: Landing Page
         keywords: landing, page
         
-Headshop will also look for default meta tags if they are defined:
+Headshop will also look for default meta tags if they are defined.  If headshop cannot locate the tags for a controller/action pair, the default tags will be displayed.
 
     default_meta:
       title: Default Page
