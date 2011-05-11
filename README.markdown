@@ -3,6 +3,57 @@ Headshop
 
 Meta tag management to DRY up your views and SEO the crap out of your site.
 
+Installation
+------------
+
+To get started with headshop add it to your gemfile:
+
+    gem 'headshop'
+    
+Usage
+-----
+
+Headshop relies on a yml file to determine the meta tags to display.  Create an initializer file (config/intializers/headshop.rb) and tell headshop where your yml file is located.
+
+    Headshop.setup do |config|
+      config.config_file = File.join(Rails.root, 'config', 'headshop.yml')
+    end
+    
+Headshop will search the yml file with the controller name/action name to find the correct tags.  To populate the meta tags for the index action on the landing controller:
+
+    landing:
+      index:
+        title: Landing Page
+        description: Landing Page
+        keywords: landing, page
+        
+Headshop will also look for default meta tags if they are defined:
+
+    default_meta:
+      title: Default Page
+      description: Default Page
+      keywords: default, page
+      
+You can also apply base tags to each matching tag:
+
+    base_meta:
+      title: Headshop |
+      description: Headshop |
+      keywords: headshop
+      
+This will output (given the default_meta above):
+
+    <title>Headshop | Default Page</title>
+    <meta name='title' content='Headshop | Default Page' />
+    <meta name='description' content='Headshop | Default Page' />
+    <meta name='keywords' content='headshop, default, page' />
+    
+Meta tags aren't limited to title, description and keywords.  Headshop will apply any meta tag found in the yml file to your view.
+
+Display the meta tag in your view with the meta_tag helper:
+    = meta_tag
+
+
 Contributing to providence
 --------------------------
  
