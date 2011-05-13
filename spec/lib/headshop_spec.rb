@@ -43,5 +43,17 @@ describe Headshop do
     it "should return true if the controller/action key are found" do
       Headshop.has_meta_data_for?('controller', 'action').should be_true
     end
+    
+    it "should return true for a namespaced controller" do
+      Headshop.has_meta_data_for?('namespace/controller', 'action').should be_true
+    end
+    
+    it "should return false for a namespaced controller that is not found" do
+       Headshop.has_meta_data_for?('noway/controller', 'action').should be_false
+    end
+    
+    it "should be able to deeply nest a controller" do
+      Headshop.has_meta_data_for?('n/a/m/e/s/p/a/c/e/controller', 'action').should be_true
+    end
   end
 end

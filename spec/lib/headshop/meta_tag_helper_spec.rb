@@ -24,7 +24,7 @@ describe Headshop::MetaTagHelper do
   
   context "#meta_tag" do
     before(:each) do
-      Class.stub!(:controller_name).and_return('controller')
+      Class.stub!(:controller_path).and_return('controller')
       Class.stub!(:action_name).and_return('action')
     end
     
@@ -40,18 +40,18 @@ describe Headshop::MetaTagHelper do
       end
     
       meta_data = Class.meta_tag
-      /<title>action_title<\/title>\n/.should =~ meta_data
-      /<meta name='title' content='action_title' \/>\n/.should =~ meta_data
-      /<meta name='description' content='action_description' \/>\n/.should =~ meta_data
-      /<meta name='keywords' content='action_keywords' \/>\n/.should =~ meta_data
+      /<title>action_title<\/title>/.should =~ meta_data
+      /<meta content="action_title" name="title" \/>/.should =~ meta_data
+      /<meta content="action_description" name="description" \/>/.should =~ meta_data
+      /<meta content="action_keywords" name="keywords" \/>/.should =~ meta_data
     end
     
     it "should write the meta data for controller/action" do
       meta_data = Class.meta_tag
-      /<title>base | action_title<\/title>\n/.should =~ meta_data
-      /<meta name='title' content='base | action_title' \/>\n/.should =~ meta_data
-      /<meta name='description' content='base | action_description' \/>\n/.should =~ meta_data
-      /<meta name='keywords' content='base, action_keywords' \/>\n/.should =~ meta_data
+      /<title>base | action_title<\/title>/.should =~ meta_data
+      /<meta content="base | action_title" name="title" \/>/.should =~ meta_data
+      /<meta content="base | action_description" name="description" \/>/.should =~ meta_data
+      /<meta content="base, action_keywords" name="keywords" \/>/.should =~ meta_data
     end
   end
   
@@ -80,7 +80,7 @@ describe Headshop::MetaTagHelper do
   context "#write_meta_data" do
     it "should write meta data for anything" do
       meta_data = Class.write_meta_data({:yousocrazy => :tester})
-      /<meta name='yousocrazy' content='tester' \/>\n/.should =~ meta_data
+      /<meta content="tester" name="yousocrazy" \/>/.should =~ meta_data
     end
   end
 end

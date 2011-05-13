@@ -17,11 +17,19 @@ module Headshop
      yield self
   end
   
-  def self.has_meta_data_for?(controller, action)
-    self.meta_data.has_key?(controller) && self.meta_data[controller].has_key?(action)
+  def self.has_meta_data_for?(controller, action)    
+    controller_path = controller.split('/')
+    md = self.meta_data
+    has_controller_meta_data = true
+    
+    controller_path.each do |key|
+      has_controller_meta_data = has_controller_meta_data & md.has_key?(key)
+      md = md[key] if has_controller_meta_data
+    end
+
+    has_controller_meta_data && md.has_key?(action)
   end
 end
 
 require 'headshop/meta_tag_helper'
-
 ActionView::Base.send :include, Headshop::MetaTagHelper

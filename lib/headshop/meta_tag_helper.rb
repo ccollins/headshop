@@ -1,6 +1,10 @@
+require 'action_view'
+
 module Headshop::MetaTagHelper
+  include ActionView::Helpers::TagHelper
+  
   def meta_tag
-    write_meta_data(get_meta_data_for(controller_name, action_name))
+    write_meta_data(get_meta_data_for(controller_path, action_name))
   end
   
   def get_meta_data_for(controller, action)
@@ -20,8 +24,8 @@ module Headshop::MetaTagHelper
   end
   
   def write_meta_data meta_data
-    result = meta_data.reduce('') { |memo, obj| memo += "<meta name='#{obj[0]}' content='#{apply_base_tag(obj[0], obj[1])}' />\n" }
-    result += "<title>#{apply_base_tag('title', meta_data['title'])}</title>\n" if meta_data.has_key?('title')
-    result.respond_to?(:html_safe) ? result.html_safe : result
+    display_meta = meta_data.collect { |meta| tag(:meta, {:name => meta[0], :content => apply_base_tag(meta[0], meta[1])}, false, false) }
+    display_meta.push(content_tag(:title, apply_base_tag('title', meta_data['title']), nil, false)) if meta_data.has_key?('title')
+    display_meta.join("\n").html_safe
   end
 end

@@ -13,7 +13,29 @@ controller:
     description: 'action_description'
     keywords: 'action_keywords'
     title: 'action_title'
+    
+namespace:
+  controller:
+    action:
+      description: 'namespace_description'
+      keywords: 'namespace_keywords'
+      title: 'namespace_title'
   
+n:
+  a:
+    m:
+      e:
+        s:
+          p:
+            a:
+              c:
+                e:
+                  controller:
+                    action:
+                      description: 'namespace_description'
+                      keywords: 'namespace_keywords'
+                      title: 'namespace_title'
+                      
 tester:
   default_meta:
     description: 'tester_description'
