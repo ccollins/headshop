@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{headshop}
-  s.version = "0.2.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chuck Collins"]
-  s.date = %q{2011-05-10}
+  s.date = %q{2011-05-13}
   s.description = %q{Manage meta tags through an external yml file.  Easy configuration.  Takes ugly boilerplate away from your app.}
   s.email = %q{chuck.collins@gmail.com}
   s.extra_rdoc_files = [
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "README.markdown",
     "Rakefile",
     "VERSION",
+    "headshop.gemspec",
     "lib/headshop.rb",
     "lib/headshop/meta_tag_helper.rb",
     "spec/headshop.yml",
