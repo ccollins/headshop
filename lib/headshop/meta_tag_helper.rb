@@ -7,10 +7,23 @@ module Headshop::MetaTagHelper
     write_meta_data(get_meta_data_for(controller_path, action_name))
   end
   
+  def find_meta_data_for(controller, action)    
+    controller_path = controller.split('/')
+    md = Headshop.meta_data
+    has_controller_meta_data = true
+    
+    controller_path.each do |key|
+      has_controller_meta_data = has_controller_meta_data & md.has_key?(key)
+      md = md[key] if has_controller_meta_data
+    end
+
+    md[action] if has_controller_meta_data && md.has_key?(action)
+  end
+  
   def get_meta_data_for(controller, action)
-    if Headshop.has_meta_data_for?(controller, action) 
-      Headshop.meta_data[controller][action] 
-    elsif Headshop.meta_data.has_key?('default_meta')
+    if meta_data = find_meta_data_for(controller, action)
+      meta_data
+    else
       Headshop.meta_data['default_meta']
     end
   end

@@ -28,32 +28,4 @@ describe Headshop do
       Headshop.meta_data.should == {:test => 'test'}
     end
   end
-  
-  context "#has_meta_data_for?" do
-    before(:all) do
-      Headshop.setup do |config|
-        config.config_file = File.join(File.dirname(__FILE__), '..', 'headshop.yml')
-      end
-    end
-  
-    it "should return false if no meta data" do
-      Headshop.has_meta_data_for?('noway', 'noway').should be_false
-    end
-    
-    it "should return true if the controller/action key are found" do
-      Headshop.has_meta_data_for?('controller', 'action').should be_true
-    end
-    
-    it "should return true for a namespaced controller" do
-      Headshop.has_meta_data_for?('namespace/controller', 'action').should be_true
-    end
-    
-    it "should return false for a namespaced controller that is not found" do
-       Headshop.has_meta_data_for?('noway/controller', 'action').should be_false
-    end
-    
-    it "should be able to deeply nest a controller" do
-      Headshop.has_meta_data_for?('n/a/m/e/s/p/a/c/e/controller', 'action').should be_true
-    end
-  end
 end

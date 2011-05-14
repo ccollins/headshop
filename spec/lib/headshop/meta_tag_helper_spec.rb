@@ -68,6 +68,10 @@ describe Headshop::MetaTagHelper do
       Class.get_meta_data_for('controller', 'action').should == {"title"=>"action_title", "description"=>"action_description", "keywords"=>"action_keywords"}
     end
     
+    it "should return meta data for a namespaced controller and action" do
+      Class.get_meta_data_for('n/a/m/e/s/p/a/c/e/controller', 'action').should == {"title"=>"namespace_title", "description"=>"namespace_description", "keywords"=>"namespace_keywords"}
+    end
+    
     it "should return nil when a controller and action arent found and no default set" do
       Headshop.setup do |config|
         config.config_file = File.join(File.dirname(__FILE__), '..', '..', 'headshop_no_default_no_base.yml')
@@ -81,6 +85,38 @@ describe Headshop::MetaTagHelper do
     it "should write meta data for anything" do
       meta_data = Class.write_meta_data({:yousocrazy => :tester})
       /<meta content="tester" name="yousocrazy" \/>/.should =~ meta_data
+    end
+  end
+  
+  context "#find_meta_data_for" do
+    before(:all) do
+      Headshop.setup do |config|
+        config.config_file = File.join(File.dirname(__FILE__), '..', '..', 'headshop.yml')
+      end
+    end
+  
+    it "should return nil if no meta data" do
+      Class.find_meta_data_for('noway', 'noway').should be_nil
+    end
+    
+    it "should return true if the controller/action key are found" do
+      Class.find_meta_data_for('controller', 'action').should == {"title"=>"action_title", "description"=>"action_description", "keywords"=>"action_keywords"}
+    end
+    
+    it "should return true for a namespaced controller" do
+      Class.find_meta_data_for('namespace/controller', 'action').should == {"title"=>"namespace_title", "description"=>"namespace_description", "keywords"=>"namespace_keywords"}
+    end
+    
+    it "should return nil for a namespaced controller that is not found" do
+      Class.find_meta_data_for('noway/controller', 'action').should be_nil
+    end
+    
+    it "should be able to deeply nest a controller" do
+      Class.find_meta_data_for('n/a/m/e/s/p/a/c/e/controller', 'action').should == {"title"=>"namespace_title", "description"=>"namespace_description", "keywords"=>"namespace_keywords"}
+    end
+    
+    it "should be able to deeply nest a controller and return nil" do
+      Class.find_meta_data_for('s/h/a/m/a/l/a/m/a/d/i/n/g/o/n/g/controller', 'action').should be_nil
     end
   end
 end
